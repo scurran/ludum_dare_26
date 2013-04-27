@@ -1,17 +1,16 @@
 var junk = (function () {
     
-    var update, spawn, __ = {};
+    var update, spawn, alive, __ = {};
     
     update = function (delta, ctx) {
         this.x -= this.speed * delta * Math.sin(this.direction);
         this.y -= this.speed * delta * Math.cos(this.direction);
         
-        ctx.fillStyle = 'white';
-        ctx.strokeStyle = 'white';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 10, 0, 2*Math.PI);
-        ctx.fill();
-        ctx.stroke();
+        draw.dot(ctx, this.x, this.y, "white");
+    };
+    
+    alive = function () {
+        return true;
     };
     
     spawn = function () {
@@ -25,6 +24,7 @@ var junk = (function () {
             y: y,
             speed: 3,
             update: update,
+            alive: alive
         };
     };
     

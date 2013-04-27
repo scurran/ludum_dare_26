@@ -27,16 +27,27 @@ var gamePlay = (function() {
     };
     
     update = function (delta) {
-        var i, entitiesCount;
+        var i, entitiesCount, newEntities = [], ent;
         context.fillStyle = __.generateBackgroundColor(delta);
         context.fillRect(0, 0, 600, 400);
         for (i = 0, entitiesCount = __.entities.length; i < entitiesCount; i++) {
-            __.entities[i].update(delta,context);
+            ent = __.entities[i];
+            ent.update(delta,context);
+            if (ent.alive()) {
+                newEntities.push(ent);
+            }
         }
+        __.entities = newEntities;
+    };
+    
+    interact = function (mousePos) {
+        __.entities.push(bubble.spawn(mousePos));
     };
 
     return {
         update: update,
+        interact: interact,
         init: init
     };
+    
 }());
