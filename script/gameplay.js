@@ -1,7 +1,8 @@
 var gamePlay = (function() {
 
     var update, 
-        init, 
+        init,
+        interact,
         context, 
         __ = {};
 
