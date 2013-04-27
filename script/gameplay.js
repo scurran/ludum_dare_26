@@ -6,32 +6,37 @@ var gamePlay = (function() {
         context, 
         __ = {};
 
-    __.backgroundCount = 0;
-    __.entities = []
+    __.entities = [];
+    __.bubbles = [];
+    __.maxEntities = 10;
 
     init = function (ctx) {
-        var i, max;
         context = ctx;
-        for (i = 0, max = 20; i < max; i++) {
-            __.entities.push(junk.spawn());
-        }
     };
     
-    update = function (delta) {
+    __.updateEntities = function (ents, delta, context) {
         var i, entitiesCount, newEntities = [], ent;
-        draw.clear(context, 'black');
-        for (i = 0, entitiesCount = __.entities.length; i < entitiesCount; i++) {
-            ent = __.entities[i];
+        for (i = 0, entitiesCount = ents.length; i < entitiesCount; i++) {
+            ent = ents[i];
             ent.update(delta,context);
             if (ent.alive()) {
                 newEntities.push(ent);
             }
         }
-        __.entities = newEntities;
+        return newEntities;
+    };
+    
+    update = function (delta) {
+        draw.clear(context, 'black');
+        if ((__.entities.length < __.maxEntities) && (Math.random() > 0.9)) {
+            __.entities.push(junk.spawn());            
+        }
+        __.entities = __.updateEntities(__.entities, delta, context);
+        __.bubbles =__.updateEntities(__.bubbles, delta, context);
     };
     
     interact = function (mousePos) {
-        __.entities.push(bubble.spawn(mousePos));
+        __.bubbles.push(bubble.spawn(mousePos));
     };
 
     return {
