@@ -7,7 +7,7 @@ var player = (function () {
             x: this.x,
             y: this.y,
             r: this.r,
-            color: 'green'
+            color: '#668888'
         });
     };
     
@@ -15,8 +15,10 @@ var player = (function () {
         return (this.life > 0);
     };
     
-    collide = function () {
-        console.log('bad!');
+    collide = function (ent) {
+        ent.life = 0;
+        this.r += 3;
+        console.log('collision');
     }
     
     spawn = function (options) {
@@ -24,6 +26,7 @@ var player = (function () {
             update: update,
             alive: alive,
             collisionCheck: mixins.collisionCheck,
+            collide: collide,
             x: 300,
             y: 200,
             r: 45,

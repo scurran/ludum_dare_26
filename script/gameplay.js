@@ -10,6 +10,7 @@ var gamePlay = (function() {
     __.bubbles = [];
     __.player = player.spawn();
     __.maxEntities = 5;
+    __.maxBubbles = 30;
 
     init = function (ctx) {
         context = ctx;
@@ -37,18 +38,22 @@ var gamePlay = (function() {
     };
     
     update = function (delta) {
-        draw.clear(context, 'black');
+        draw.clear(context, 'white');
         if ((__.entities.length < __.maxEntities) && (Math.random() > 0.9)) {
             __.entities.push(junk.spawn());            
         }
+        __.player.update(delta, context);
         __.doCollisions(__.bubbles, __.entities);
+        __.doCollisions(__.entities, [__.player]);
         __.entities = __.updateEntities(__.entities, delta, context);
         __.bubbles =__.updateEntities(__.bubbles, delta, context);
-        __.player.update(delta, context);
+        
     };
     
     interact = function (mousePos) {
-        __.bubbles.push(bubble.spawn(mousePos));
+        if (__.bubbles.length < __.maxBubbles) {
+            __.bubbles.push(bubble.spawn(mousePos));            
+        }
     };
 
     return {

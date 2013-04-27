@@ -10,7 +10,7 @@ var junk = (function () {
             x: this.x,
             y: this.y,
             r: this.r,
-            color: 'white'
+            color: 'black'
         });
     };
     
@@ -37,7 +37,7 @@ var junk = (function () {
             direction: direction,
             x: x,
             y: y,
-            r: 10,
+            r: 5,
             speed: 2,
             life: 180,
             update: update,
