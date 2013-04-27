@@ -10,9 +10,15 @@ var draw = (function () {
         ctx.fill();
         ctx.stroke();
     };
+    
+    clear = function (ctx, color) {
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, 600, 400);
+    };
 
     return {
-        dot: dot
+        dot: dot,
+        clear: clear
     };
     
 }());

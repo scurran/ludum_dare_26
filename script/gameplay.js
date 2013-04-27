@@ -15,21 +15,10 @@ var gamePlay = (function() {
             __.entities.push(junk.spawn());
         }
     };
-
-    __.generateBackgroundColor = function (delta) {
-        var red, green, blue, val;
-        __.backgroundCount += delta;
-        val = (Math.sin(__.backgroundCount/50) + 1)*50 + 50;
-        red = 0;
-        blue = parseInt(val);
-        green = parseInt(val);
-        return 'rgb(' + red + ',' + blue + ',' + green + ')';
-    };
     
     update = function (delta) {
         var i, entitiesCount, newEntities = [], ent;
-        context.fillStyle = __.generateBackgroundColor(delta);
-        context.fillRect(0, 0, 600, 400);
+        draw.clear(context, 'black');
         for (i = 0, entitiesCount = __.entities.length; i < entitiesCount; i++) {
             ent = __.entities[i];
             ent.update(delta,context);
