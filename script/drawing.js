@@ -1,6 +1,6 @@
 var draw = (function () {
 
-    var dot;
+    var dot, clear;
     
     dot = function (ctx, options) {
         ctx.fillStyle = options.color;
