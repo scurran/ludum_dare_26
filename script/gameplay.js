@@ -8,7 +8,8 @@ var gamePlay = (function() {
 
     __.entities = [];
     __.bubbles = [];
-    __.maxEntities = 10;
+    __.player = player.spawn();
+    __.maxEntities = 5;
 
     init = function (ctx) {
         context = ctx;
@@ -26,13 +27,24 @@ var gamePlay = (function() {
         return newEntities;
     };
     
+    __.doCollisions = function (entsA, entsB) {
+        var i, j, entitiesCountA, entitiesCountB;
+        for (i = 0, entitiesCountA = entsA.length; i < entitiesCountA; i++) {
+            for (j = 0, entitiesCountB = entsB.length; j < entitiesCountB; j++) {
+                entsB[j].collisionCheck(entsA[i]);
+            }
+        }
+    };
+    
     update = function (delta) {
         draw.clear(context, 'black');
         if ((__.entities.length < __.maxEntities) && (Math.random() > 0.9)) {
             __.entities.push(junk.spawn());            
         }
+        __.doCollisions(__.bubbles, __.entities);
         __.entities = __.updateEntities(__.entities, delta, context);
         __.bubbles =__.updateEntities(__.bubbles, delta, context);
+        __.player.update(delta, context);
     };
     
     interact = function (mousePos) {

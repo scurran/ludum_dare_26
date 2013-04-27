@@ -1,4 +1,4 @@
-var bubble = (function () {
+var player = (function () {
     
     var update, spawn, alive;
     
@@ -7,9 +7,8 @@ var bubble = (function () {
             x: this.x,
             y: this.y,
             r: this.r,
-            color: 'yellow'
+            color: 'green'
         });
-        this.life -= delta;
     };
     
     alive = function () {
@@ -20,10 +19,11 @@ var bubble = (function () {
         return {
             update: update,
             alive: alive,
-            x: options.x,
-            y: options.y,
-            r: 3,
-            life: 50
+            collisionCheck: mixins.collisionCheck,
+            x: 300,
+            y: 200,
+            r: 45,
+            life: 10
         };
     };
     
