@@ -6,11 +6,11 @@ var gamePlay = (function() {
 
     __.backgroundCount = 0;
 
-    init = function(ctx) {
+    init = function (ctx) {
         context = ctx;
     };
 
-    __.generateBackgroundColor = function(delta) {
+    __.generateBackgroundColor = function (delta) {
         var red, green, blue, val;
         __.backgroundCount += delta;
         val = (Math.sin(__.backgroundCount/50) + 1)*50 + 50;
@@ -20,7 +20,7 @@ var gamePlay = (function() {
         return 'rgb(' + red + ',' + blue + ',' + green + ')';
     };
 
-    update = function(delta) {
+    update = function (delta) {
         context.fillStyle = __.generateBackgroundColor(delta);
         context.fillRect(0, 0, 600, 400);
     };

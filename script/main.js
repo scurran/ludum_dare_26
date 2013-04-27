@@ -1,17 +1,17 @@
-var game = (function() {
+var game = (function () {
     var start;
 
-    start = function() {
+    start = function () {
         var now = 0,
             then = Date.now(),
             interval = 30,
             delta = 1;
 
         gamePlay.init(document.getElementById('canvas').getContext('2d'));
-        setInterval(function() {
-            now = Date.now();
+        setInterval(function () {
+            now = Date.now ();
             delta = (now - then) / interval;
-            gamePlay.update(delta);
+            gamePlay.update (delta);
             then = now;
         }, interval);
     };
@@ -21,6 +21,6 @@ var game = (function() {
     };
 }());
 
-window.onload = function() {
-    game.start();
+window.onload = function () {
+    game.start ();
 };
