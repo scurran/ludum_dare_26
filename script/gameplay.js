@@ -11,7 +11,7 @@ var gamePlay = (function() {
     init = function (ctx) {
         var i, max;
         context = ctx;
-        for (i = 0, max = 10; i < max; i++) {
+        for (i = 0, max = 20; i < max; i++) {
             __.entities.push(junk.spawn());
         }
     };
