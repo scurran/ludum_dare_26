@@ -6,7 +6,7 @@ var junk = (function () {
         this.x += this.speed * delta * Math.cos(this.direction);
         this.y += this.speed * delta * Math.sin(this.direction);
         this.life -= 1;
-        draw.dot(ctx, {
+        draw.square(ctx, {
             x: this.x,
             y: this.y,
             r: this.r,

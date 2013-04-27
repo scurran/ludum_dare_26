@@ -3,7 +3,7 @@ var player = (function () {
     var update, spawn, alive, collide;
     
     update = function (delta, ctx) {
-        draw.dot(ctx, {
+        draw.outline(ctx, {
             x: this.x,
             y: this.y,
             r: this.r,
