@@ -1,6 +1,6 @@
 var player = (function () {
     
-    var update, spawn, alive;
+    var update, spawn, alive, collide;
     
     update = function (delta, ctx) {
         draw.dot(ctx, {
@@ -14,6 +14,10 @@ var player = (function () {
     alive = function () {
         return (this.life > 0);
     };
+    
+    collide = function () {
+        console.log('bad!');
+    }
     
     spawn = function (options) {
         return {

@@ -1,6 +1,6 @@
 var junk = (function () {
     
-    var update, spawn, alive, __ = {};
+    var update, spawn, alive, collide, __ = {};
     
     update = function (delta, ctx) {
         this.x += this.speed * delta * Math.cos(this.direction);
