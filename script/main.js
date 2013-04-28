@@ -32,9 +32,13 @@ var game = (function () {
             gameover: gameover
         };
         
-        // canvas.onmousedown = interactionStart;
-        //         canvas.onmouseup = interactionEnd;
-        //         canvas.onmousemove = interactionMove;
+        canvas.onmousedown = interactionStart;
+        canvas.onmouseup = interactionEnd;
+        canvas.onmousemove = interactionMove;
+        
+        window.addEventListener("touchmove", function (event) {
+            event.preventDefault();
+        }, false);
         
         canvas.addEventListener("touchstart", interactionStart, false);
         canvas.addEventListener("touchend", interactionEnd, false);
