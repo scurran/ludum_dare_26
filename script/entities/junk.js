@@ -10,7 +10,7 @@ var junk = (function () {
             x: this.x,
             y: this.y,
             r: this.r,
-            color: (this.name === "bad_junk") ? 'black' : 'green'
+            color: (this.name === "bad_junk") ? 'black' : '#FF9900'
         });
     };
     

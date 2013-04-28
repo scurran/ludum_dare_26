@@ -57,10 +57,10 @@ var gamePlay = (function() {
             x: 10,
             y: 20,
             color: 'black',
-            text: "Score: " + __.player.life
+            text: "Score: " + __.player.score
         });
         
-        if (__.player.r > 64) {
+        if (!__.player.alive()) {
             __.change = true;
         }
     };
@@ -78,6 +78,9 @@ var gamePlay = (function() {
     reset = function () {
         __.change = false;
         __.player.r = 32;
+        __.player.score = 0;
+        __.entities = [];
+        __.bubbles = [];
     };
 
     return {

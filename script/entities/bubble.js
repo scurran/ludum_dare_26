@@ -7,7 +7,7 @@ var bubble = (function () {
             x: this.x,
             y: this.y,
             r: this.r,
-            color: 'rgba(66,88,88,' + (this.life/50) +')'
+            color: 'rgba(00,153,255,' + (this.life/50) +')'
         });
         this.life -= delta;
     };

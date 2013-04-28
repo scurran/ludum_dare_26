@@ -3,19 +3,22 @@ var gameover = (function () {
     var update, init, shouldChange, interact, reset, __ = {};
     
     __.change = false;
+    __.delay = 60;
     
     init = function (ctx) {
         __.context = ctx;
     };
     
     update = function () {
-        draw.clear(__.context,"grey");
+        var i, max;
+        draw.clear(__.context,"black");
         draw.write(__.context, {
             text: "game over",
             x: "10",
             y: "380",
-            color: "black"
+            color: "white"
         });
+        __.delay -= 1;
     };
     
     shouldChange = function () {
@@ -23,10 +26,13 @@ var gameover = (function () {
     };
     
     interact = function () {
-        __.change = true;
+        if (__.delay < 0) {
+            __.change = true;            
+        }
     };
     
     reset = function () {
+        __.delay = 60;
         __.change = false;
     };
     

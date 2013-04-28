@@ -38,18 +38,18 @@ var player = (function () {
     };
     
     alive = function () {
-        return (this.life > 0);
+        return (this.r < 100);
     };
     
     collide = function (ent) {
         switch (ent.name) {
             case 'bad_junk':
                 ent.life = 0;
-                this.r += 3;
+                this.r += 2;
                 break;
             case 'good_junk':
                 ent.life = 0;
-                this.life += 1
+                this.score += 1
                 break;
         }
     };
@@ -63,7 +63,7 @@ var player = (function () {
             x: 300,
             y: 200,
             r: 32,
-            life: 1
+            score: 0
         };
     };
     
