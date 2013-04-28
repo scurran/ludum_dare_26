@@ -25,7 +25,7 @@ var player = (function () {
             x: this.x,
             y: this.y,
             r: 16,
-            src: 'art/meditation2.png'
+            src: 'art/meditation.png'
         });
         
         draw.texture(ctx, {

@@ -3,7 +3,7 @@ var draw = (function () {
     var dot, clear, outline, square, texture, write, imageCache = {}, images, i, len;
     
     images = [
-        'art/meditation2.png', 
+        'art/meditation.png', 
         'art/thoughts.png',
         'art/thoughts_1.png',
         'art/thoughts_2.png',
