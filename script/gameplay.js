@@ -11,8 +11,8 @@ var gamePlay = (function() {
     __.entities = [];
     __.bubbles = [];
     __.player = player.spawn();
-    __.maxEntities = 7;
-    __.maxBubbles = 30;
+    __.maxEntities = 5;
+    __.maxBubbles = 45;
     __.change = false;
 
     init = function (ctx) {
@@ -60,9 +60,18 @@ var gamePlay = (function() {
             text: "Score: " + __.player.score
         });
         
+        draw.write(context, {
+            x: 470,
+            y: 20,
+            color: 'black',
+            text: "Focus: " + parseInt(100 - (__.bubbles.length / __.maxBubbles)*100) + "%"
+        });
+        
         if (!__.player.alive()) {
             __.change = true;
         }
+        
+        __.maxEntities = 5 + parseInt(__.player.score / 10);
     };
     
     shouldChange = function () {
