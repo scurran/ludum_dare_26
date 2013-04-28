@@ -9,7 +9,7 @@ var game = (function () {
             canvas = document.getElementById('canvas'),
             mouseIsDown = false,
             mousePos = { x: 0, y: 0 },
-            state = gamePlay,
+            state = startscreen,
             interactionStart = function (event) {
                 mouseIsDown = true;
             },
@@ -26,10 +26,12 @@ var game = (function () {
 
         gamePlay.init(canvas.getContext('2d'));
         gameover.init(canvas.getContext('2d'));
+        startscreen.init(canvas.getContext('2d'));
         
         states = {
             gamePlay: gamePlay,
-            gameover: gameover
+            gameover: gameover,
+            startscreen: startscreen
         };
         
         canvas.onmousedown = interactionStart;
@@ -67,6 +69,9 @@ var game = (function () {
 window.onload = function () {
     if (canvas.getContext('2d').webkitImageSmoothingEnabled) {
         canvas.getContext('2d').webkitImageSmoothingEnabled = false;
+    }
+    if (canvas.getContext('2d').mozImageSmoothingEnabled) {
+        canvas.getContext('2d').mozImageSmoothingEnabled = false;
     }
     
     game.start ();

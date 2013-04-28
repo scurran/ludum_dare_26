@@ -18,7 +18,7 @@ var draw = (function () {
     
     write = function (ctx, options) {
         ctx.fillStyle = options.color;
-        ctx.font = "bold 16px Open Sans";
+        ctx.font = options.font;
         ctx.fillText(options.text, options.x, options.y);
     };
     

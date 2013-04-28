@@ -52,19 +52,21 @@ var gamePlay = (function() {
         __.doCollisions(__.entities, [__.player]);
         __.entities = __.updateEntities(__.entities, delta, context);
         __.bubbles =__.updateEntities(__.bubbles, delta, context);
- 
+        
         draw.write(context, {
             x: 10,
             y: 20,
             color: 'black',
-            text: "Score: " + __.player.score
+            text: "Score: " + __.player.score,
+            font: "bold 16px Open Sans"
         });
         
         draw.write(context, {
             x: 470,
             y: 20,
             color: 'black',
-            text: "Focus: " + parseInt(100 - (__.bubbles.length / __.maxBubbles)*100) + "%"
+            text: "Focus: " + parseInt(100 - (__.bubbles.length / __.maxBubbles)*100) + "%",
+            font: "bold 16px Open Sans"
         });
         
         if (!__.player.alive()) {

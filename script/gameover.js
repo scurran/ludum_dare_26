@@ -16,7 +16,8 @@ var gameover = (function () {
             text: "game over",
             x: "10",
             y: "380",
-            color: "white"
+            color: "white",
+            font: "bold 24px lobster"
         });
         __.delay -= 1;
     };
