@@ -11,15 +11,15 @@ var game = (function () {
             mousePos = { x: 0, y: 0 },
             state = gamePlay,
             interactionStart = function (event) {
-                console.log(event);
                 mouseIsDown = true;
             },
             interactionEnd = function (event) {
-                console.log(event);
                 mouseIsDown = false;
             },
             interactionMove = function (event) {
-                console.log(event);
+                if (event.touches) {
+                    event = event.touches[0];
+                }
                 mousePos.x = event.pageX - canvas.offsetLeft,
                 mousePos.y = event.pageY - canvas.offsetTop
             };
@@ -32,13 +32,13 @@ var game = (function () {
             gameover: gameover
         };
         
-        canvas.onmousedown = interactionStart;
-        canvas.onmouseup = interactionEnd;
-        canvas.onmousemove = interactionMove;
+        // canvas.onmousedown = interactionStart;
+        //         canvas.onmouseup = interactionEnd;
+        //         canvas.onmousemove = interactionMove;
         
-        canvas.touchstart = interactionStart;
-        canvas.touchend = interactionEnd;
-        canvas.touchmove = interactionMove;
+        canvas.addEventListener("touchstart", interactionStart, false);
+        canvas.addEventListener("touchend", interactionEnd, false);
+        canvas.addEventListener("touchmove", interactionMove, false);
         
         setInterval(function () {
             if (state.shouldChange()) {
