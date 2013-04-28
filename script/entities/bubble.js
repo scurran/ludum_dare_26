@@ -3,11 +3,11 @@ var bubble = (function () {
     var update, spawn, alive;
     
     update = function (delta, ctx) {
-        draw.dot(ctx, {
+        draw.square(ctx, {
             x: this.x,
             y: this.y,
             r: this.r,
-            color: '#668888'
+            color: 'rgba(66,88,88,' + (this.life/50) +')'
         });
         this.life -= delta;
     };
@@ -22,7 +22,7 @@ var bubble = (function () {
             alive: alive,
             x: options.x,
             y: options.y,
-            r: 3,
+            r: 4,
             life: 50
         };
     };

@@ -42,5 +42,9 @@ var game = (function () {
 }());
 
 window.onload = function () {
+    if (canvas.getContext('2d').webkitImageSmoothingEnabled) {
+        canvas.getContext('2d').webkitImageSmoothingEnabled = false;
+    }
+    
     game.start ();
 };

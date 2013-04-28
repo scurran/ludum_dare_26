@@ -37,7 +37,7 @@ var junk = (function () {
             direction: direction,
             x: x,
             y: y,
-            r: 5,
+            r: 3,
             speed: 2,
             life: 180,
             update: update,

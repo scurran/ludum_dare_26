@@ -1,6 +1,14 @@
 var draw = (function () {
 
-    var dot, clear, outline, square;
+    var dot, clear, outline, square, texture;
+    
+    texture = function (ctx, options) {
+        var x = options.x - options.r,
+            y = options.y - options.r,
+            img = new Image();
+        img.src = options.src;
+        ctx.drawImage(img, x, y, options.r * 2, options.r * 2);
+    };
     
     dot = function (ctx, options) {
         ctx.fillStyle = options.color;
@@ -23,12 +31,12 @@ var draw = (function () {
     };
     
     square = function (ctx, options) {
-        var x = options.x - options.r/2,
-            y = options.y - options.r/2;
+        var x = options.x - options.r,
+            y = options.y - options.r;
         ctx.fillStyle = options.color;
         ctx.strokeStyle = options.color;
         ctx.beginPath();
-        ctx.rect(x, y, options.r, options.r);
+        ctx.rect(x, y, options.r * 2, options.r * 2);
         ctx.fill();
         ctx.stroke();
     }
@@ -42,7 +50,8 @@ var draw = (function () {
         dot: dot,
         clear: clear,
         outline: outline,
-        square: square
+        square: square,
+        texture: texture
     };
     
 }());
