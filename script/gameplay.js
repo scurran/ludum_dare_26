@@ -9,7 +9,7 @@ var gamePlay = (function() {
     __.entities = [];
     __.bubbles = [];
     __.player = player.spawn();
-    __.maxEntities = 5;
+    __.maxEntities = 7;
     __.maxBubbles = 30;
 
     init = function (ctx) {
@@ -47,6 +47,12 @@ var gamePlay = (function() {
         __.doCollisions(__.entities, [__.player]);
         __.entities = __.updateEntities(__.entities, delta, context);
         __.bubbles =__.updateEntities(__.bubbles, delta, context);
+        draw.write(context, {
+            x: 10,
+            y: 20,
+            color: 'black',
+            text: "Score: " + __.player.life
+        });
         
     };
     

@@ -10,7 +10,7 @@ var junk = (function () {
             x: this.x,
             y: this.y,
             r: this.r,
-            color: 'black'
+            color: (this.name === "bad_junk") ? 'black' : 'green'
         });
     };
     
@@ -34,6 +34,7 @@ var junk = (function () {
         y = 200 + radius * Math.sin(angle);
         direction = Math.atan2(200-y, 300-x);
         return {
+            name: (Math.random() > 0.9) ? "good_junk" : "bad_junk",
             direction: direction,
             x: x,
             y: y,

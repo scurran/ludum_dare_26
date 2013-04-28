@@ -1,22 +1,26 @@
 var player = (function () {
     
-    var update, spawn, alive, collide;
+    var update, spawn, alive, collide, __ = {};
     
-    update = function (delta, ctx) {
+    __.getThoughtsTexture = function (radius) {
         var thoughtsTexture = 'art/thoughts.png';
         
-        if (this.r > 48) {
+        if (radius > 48) {
             thoughtsTexture = 'art/thoughts_1.png';
         }
         
-        if (this.r > 64) {
+        if (radius > 64) {
             thoughtsTexture = 'art/thoughts_2.png';
         }
         
-        if (this.r > 88) {
+        if (radius > 88) {
             thoughtsTexture = 'art/thoughts_3.png';
         }
         
+        return thoughtsTexture;
+    };
+    
+    update = function (delta, ctx) {
         draw.texture(ctx, {
             x: this.x,
             y: this.y,
@@ -28,19 +32,27 @@ var player = (function () {
             x: this.x,
             y: this.y,
             r: this.r,
-            src: thoughtsTexture
+            src: __.getThoughtsTexture(this.r)
         });
 
     };
     
     alive = function () {
-        return (this.life > 100);
+        return (this.life > 0);
     };
     
     collide = function (ent) {
-        ent.life = 0;
-        this.r += 3;
-    }
+        switch (ent.name) {
+            case 'bad_junk':
+                ent.life = 0;
+                this.r += 3;
+                break;
+            case 'good_junk':
+                ent.life = 0;
+                this.life += 1
+                break;
+        }
+    };
     
     spawn = function (options) {
         return {
@@ -51,7 +63,7 @@ var player = (function () {
             x: 300,
             y: 200,
             r: 32,
-            life: 0
+            life: 1
         };
     };
     

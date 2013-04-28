@@ -1,6 +1,12 @@
 var draw = (function () {
 
-    var dot, clear, outline, square, texture;
+    var dot, clear, outline, square, texture, write;
+    
+    write = function (ctx, options) {
+        ctx.fillStyle = options.color;
+        ctx.font = "bold 16px Open Sans";
+        ctx.fillText(options.text, options.x, options.y);
+    };
     
     texture = function (ctx, options) {
         var x = options.x - options.r,
@@ -51,7 +57,8 @@ var draw = (function () {
         clear: clear,
         outline: outline,
         square: square,
-        texture: texture
+        texture: texture,
+        write: write
     };
     
 }());
