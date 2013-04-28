@@ -41,7 +41,7 @@ var gamePlay = (function() {
     };
     
     update = function (delta) {
-        draw.clear(context, 'white');
+        draw.clear(context, 'rgb(44,121,174)');
  
         if ((__.entities.length < __.maxEntities) && (Math.random() > 0.9)) {
             __.entities.push(junk.spawn());            
