@@ -9,7 +9,20 @@ var game = (function () {
             canvas = document.getElementById('canvas'),
             mouseIsDown = false,
             mousePos = { x: 0, y: 0 },
-            state = gamePlay;
+            state = gamePlay,
+            interactionStart = function (event) {
+                console.log(event);
+                mouseIsDown = true;
+            },
+            interactionEnd = function (event) {
+                console.log(event);
+                mouseIsDown = false;
+            },
+            interactionMove = function (event) {
+                console.log(event);
+                mousePos.x = event.pageX - canvas.offsetLeft,
+                mousePos.y = event.pageY - canvas.offsetTop
+            };
 
         gamePlay.init(canvas.getContext('2d'));
         gameover.init(canvas.getContext('2d'));
@@ -19,18 +32,13 @@ var game = (function () {
             gameover: gameover
         };
         
-        canvas.onmousedown = function (event) {
-            mouseIsDown = true;
-        };
+        canvas.onmousedown = interactionStart;
+        canvas.onmouseup = interactionEnd;
+        canvas.onmousemove = interactionMove;
         
-        canvas.onmouseup = function (event) {
-            mouseIsDown = false;
-        };
-        
-        canvas.onmousemove = function (event) {
-            mousePos.x = event.pageX - canvas.offsetLeft,
-            mousePos.y = event.pageY - canvas.offsetTop
-        };
+        canvas.touchstart = interactionStart;
+        canvas.touchend = interactionEnd;
+        canvas.touchmove = interactionMove;
         
         setInterval(function () {
             if (state.shouldChange()) {
