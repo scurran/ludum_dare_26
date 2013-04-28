@@ -3,7 +3,9 @@ var gamePlay = (function() {
     var update, 
         init,
         interact,
-        context, 
+        context,
+        shouldChange, 
+        reset,
         __ = {};
 
     __.entities = [];
@@ -11,6 +13,7 @@ var gamePlay = (function() {
     __.player = player.spawn();
     __.maxEntities = 7;
     __.maxBubbles = 30;
+    __.change = false;
 
     init = function (ctx) {
         context = ctx;
@@ -39,14 +42,17 @@ var gamePlay = (function() {
     
     update = function (delta) {
         draw.clear(context, 'white');
+ 
         if ((__.entities.length < __.maxEntities) && (Math.random() > 0.9)) {
             __.entities.push(junk.spawn());            
         }
+ 
         __.player.update(delta, context);
         __.doCollisions(__.bubbles, __.entities);
         __.doCollisions(__.entities, [__.player]);
         __.entities = __.updateEntities(__.entities, delta, context);
         __.bubbles =__.updateEntities(__.bubbles, delta, context);
+ 
         draw.write(context, {
             x: 10,
             y: 20,
@@ -54,6 +60,13 @@ var gamePlay = (function() {
             text: "Score: " + __.player.life
         });
         
+        if (__.player.r > 64) {
+            __.change = true;
+        }
+    };
+    
+    shouldChange = function () {
+        return __.change;
     };
     
     interact = function (mousePos) {
@@ -61,11 +74,19 @@ var gamePlay = (function() {
             __.bubbles.push(bubble.spawn(mousePos));            
         }
     };
+    
+    reset = function () {
+        __.change = false;
+        __.player.r = 32;
+    };
 
     return {
         update: update,
         interact: interact,
-        init: init
+        init: init,
+        next: 'gameover',
+        shouldChange: shouldChange,
+        reset: reset
     };
     
 }());

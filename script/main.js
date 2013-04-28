@@ -8,9 +8,16 @@ var game = (function () {
             delta = 1,
             canvas = document.getElementById('canvas'),
             mouseIsDown = false,
-            mousePos = { x: 0, y: 0 };
+            mousePos = { x: 0, y: 0 },
+            state = gamePlay;
 
         gamePlay.init(canvas.getContext('2d'));
+        gameover.init(canvas.getContext('2d'));
+        
+        states = {
+            gamePlay: gamePlay,
+            gameover: gameover
+        };
         
         canvas.onmousedown = function (event) {
             mouseIsDown = true;
@@ -26,11 +33,15 @@ var game = (function () {
         };
         
         setInterval(function () {
+            if (state.shouldChange()) {
+                state = states[state.next];
+                state.reset();
+            }
             now = Date.now ();
             delta = (now - then) / interval;
-            gamePlay.update (delta);
+            state.update(delta);
             if (mouseIsDown) {
-                gamePlay.interact(mousePos);
+                state.interact(mousePos);
             }
             then = now;
         }, interval);
