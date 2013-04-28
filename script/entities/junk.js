@@ -28,19 +28,21 @@ var junk = (function () {
     };
     
     spawn = function () {
-        var direction, x, y, radius = 300, angle;
+        var direction, x, y, radius = 300, angle, type, life;
         angle = Math.random() * (Math.PI * 2);
         x = 300 + radius * Math.cos(angle);
         y = 200 + radius * Math.sin(angle);
         direction = Math.atan2(200-y, 300-x);
+        type = (Math.random() > 0.9) ? "good_junk" : "bad_junk";
+        life = (type === "good_junk") ? 360 : 180;
         return {
-            name: (Math.random() > 0.9) ? "good_junk" : "bad_junk",
+            name: type,
             direction: direction,
             x: x,
             y: y,
             r: 3,
             speed: 2,
-            life: 180,
+            life: life,
             update: update,
             alive: alive,
             collisionCheck: mixins.collisionCheck,
