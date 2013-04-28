@@ -12,8 +12,8 @@ var gameover = (function () {
         draw.clear(__.context,"grey");
         draw.write(__.context, {
             text: "game over",
-            x: "200",
-            y: "200",
+            x: "10",
+            y: "380",
             color: "black"
         });
     };
