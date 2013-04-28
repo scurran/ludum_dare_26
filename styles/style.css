@@ -6,6 +6,10 @@ h1 {
     font: 24pt lobster;
 }
 
+a {
+    color: rgb(44,121,174);
+}
+
 p {
     font: 12pt Open Sans;
 }
